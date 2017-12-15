@@ -124,7 +124,6 @@ public class MainFrame extends JFrame {
 	 */
 	private JMenuBar createMenu() { // 创建菜单栏的方法
 		JMenuBar menuBar = new JMenuBar();
-
 		JMenu baseMenu = new JMenu();// 初始化基础数据维护菜单
 		baseMenu.setIcon(CreateIcon.add("jcsjcd.jpg"));
 		{

@@ -40,9 +40,10 @@ public class LoginIFrame extends JFrame {
 			user = Dao.check(username.getText(), password.getText());
 			if (user.getName() != null) {
 				try {
-					MainFrame frame = new MainFrame();
-					frame.setVisible(true);
-					LoginIFrame.this.setVisible(false);
+					JOptionPane.showMessageDialog(null, "登录成功！");
+//					MainFrame frame = new MainFrame();
+//					frame.setVisible(true);
+//					LoginIFrame.this.setVisible(false);
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
@@ -69,7 +70,7 @@ public class LoginIFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		borderLayout.setVgap(10);
 		getContentPane().setLayout(borderLayout);
-		setTitle("图书馆管理系统登录");
+		setTitle("图书管理系统登录");
 		setBounds(100, 100, 285, 194);
 		final JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
@@ -88,7 +89,7 @@ public class LoginIFrame extends JFrame {
 		label.setPreferredSize(new Dimension(0, 0));
 		label.setMinimumSize(new Dimension(0, 0));
 		panel_2.add(label);
-		label.setText("用  户  名：");
+		label.setText("用    户：");
 
 		username = new JTextField(20);
 		username.setPreferredSize(new Dimension(0, 0));
@@ -97,7 +98,7 @@ public class LoginIFrame extends JFrame {
 		final JLabel label_1 = new JLabel();
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_2.add(label_1);
-		label_1.setText("密      码：");
+		label_1.setText("密    码：");
 
 		password = new JPasswordField(20);
 		password.setDocument(new MyDocument(6));
@@ -119,7 +120,6 @@ public class LoginIFrame extends JFrame {
 		panel_1.add(login);
 		reset = new JButton();
 		reset.addActionListener(new BookResetAction());
-
 		reset.setText("重置");
 		panel_1.add(reset);
 

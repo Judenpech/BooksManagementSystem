@@ -16,9 +16,9 @@ import com.zhang.model.User;
 
 public class Dao {
 	protected static String dbClassName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	protected static String dbUrl = "jdbc:sqlserver://localhost:1433;" + "DatabaseName=db_lib;SelectMethod=Cursor";
+	protected static String dbUrl = "jdbc:sqlserver://localhost:1433;" + "DatabaseName=BMSBase";// SelectMethod=Cursor";
 	protected static String dbUser = "sa";
-	protected static String dbPwd = "zhangyong";
+	protected static String dbPwd = "sa";
 	protected static String second = null;
 	private static Connection conn = null;
 
@@ -84,11 +84,12 @@ public class Dao {
 	public static Operator check(String name, String password) {
 		int i = 0;
 		Operator operater = new Operator();
-		String sql = "select *  from tb_operator where name='" + name + "' and password='" + password + "'and admin=1";
+		String sql = "select *  from tb_operator where name='" + name + "' and password='" + password
+				+ "'and admin=1";
 		ResultSet rs = Dao.executeQuery(sql);
 		try {
 			while (rs.next()) {
-				String names = rs.getString(1);
+				String names = rs.getString("name");
 				operater.setId(rs.getString("id"));
 				operater.setName(rs.getString("name"));
 				operater.setGrade(rs.getString("admin"));
@@ -284,9 +285,9 @@ public class Dao {
 		return i;
 	}
 
-	// /*
-	// * 删除图书信息方法
-	// */
+	/*
+	 * 删除图书信息方法
+	 */
 	public static int Delbook(String ISBN) {
 		int i = 0;
 		try {

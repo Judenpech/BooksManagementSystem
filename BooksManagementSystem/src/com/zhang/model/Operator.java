@@ -5,7 +5,6 @@ import com.zhang.dao.Dao;
 public class Operator {
 	private String id;
 	private String name;
-
 	private String grade;
 	private String password;
 
