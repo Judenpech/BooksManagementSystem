@@ -41,16 +41,14 @@ public class LoginIFrame extends JFrame {
 			if (user.getName() != null) {
 				try {
 					JOptionPane.showMessageDialog(null, "登录成功！");
-//					MainFrame frame = new MainFrame();
-//					frame.setVisible(true);
-//					LoginIFrame.this.setVisible(false);
+					MainFrame frame = new MainFrame();
+					frame.setVisible(true);
+					LoginIFrame.this.setVisible(false);
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
 			} else {
-				JOptionPane.showMessageDialog(null, "只有管理员才可以登录！");
-				username.setText("");
-				password.setText("");
+				JOptionPane.showMessageDialog(null, "用户名或密码错误！");
 			}
 		}
 	}
@@ -70,11 +68,11 @@ public class LoginIFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		borderLayout.setVgap(10);
 		getContentPane().setLayout(borderLayout);
-		setTitle("图书管理系统登录");
-		setBounds(100, 100, 285, 194);
+		setTitle("图书信息管理系统");
+		setBounds(100, 100, 355, 250); //设置窗体位置和大小
 		final JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
-		panel.setBorder(new EmptyBorder(0, 0, 0, 0));
+		panel.setBorder(new EmptyBorder(0, 0, 10, 0));
 		getContentPane().add(panel);
 
 		final JPanel panel_2 = new JPanel();
@@ -105,7 +103,7 @@ public class LoginIFrame extends JFrame {
 		password.setEchoChar('*');// 设置密码框的回显字符
 		password.addKeyListener(new KeyAdapter() {
 			public void keyPressed(final KeyEvent e) {
-				if (e.getKeyCode() == 10)
+				if (e.getKeyCode() == 10) //回车
 					login.doClick();
 			}
 		});
@@ -128,10 +126,10 @@ public class LoginIFrame extends JFrame {
 		tupianLabel.setIcon(loginIcon);
 		tupianLabel.setOpaque(true);
 		tupianLabel.setBackground(Color.GREEN);
-		tupianLabel.setPreferredSize(new Dimension(260, 60));
+		tupianLabel.setPreferredSize(new Dimension(260, 90));
 		panel.add(tupianLabel, BorderLayout.NORTH);
 		setVisible(true);
-		setResizable(false); // setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+		setResizable(false); 
 	}
 
 	public static Operator getUser() {

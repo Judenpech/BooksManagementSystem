@@ -63,10 +63,10 @@ public class BookAddIFrame extends JInternalFrame {
 		setIconifiable(true); // 设置窗体可最小化－－－必须
 		setClosable(true); // 设置窗体可关闭－－－必须
 		setTitle("图书信息添加"); // 设置窗体标题－－－必须
-		setBounds(100, 100, 396, 260); // 设置窗体位置和大小－－－必须
+		setBounds(100, 100, 520, 340); // 设置窗体位置和大小－－－必须
 
 		final JPanel panel = new JPanel();
-		panel.setBorder(new EmptyBorder(5, 10, 5, 10));
+		panel.setBorder(new EmptyBorder(20, 10, 10, 20));
 		final GridLayout gridLayout = new GridLayout(0, 4);
 		gridLayout.setVgap(5);
 		gridLayout.setHgap(5);
@@ -76,7 +76,7 @@ public class BookAddIFrame extends JInternalFrame {
 		label_2.setText("图书编号：");
 		panel.add(label_2);
 
-		ISBN = new JTextField("请输入13位书号", 13);
+		ISBN = new JTextField("13位图书编号不能为空！", 13);
 		ISBN.setDocument(new MyDocument(13)); // 设置书号文本框最大输入值为13
 		ISBN.setColumns(13);
 		ISBN.addKeyListener(new ISBNkeyListener());
@@ -185,7 +185,7 @@ public class BookAddIFrame extends JInternalFrame {
 	class ISBNFocusListener extends FocusAdapter {
 		public void focusLost(FocusEvent e) {
 			if (!Dao.selectBookInfo(ISBN.getText().trim()).isEmpty()) {
-				JOptionPane.showMessageDialog(null, "添加书号重复！");
+				JOptionPane.showMessageDialog(null, "添加的书号已存在！");
 				return;
 			}
 		}
@@ -208,27 +208,27 @@ public class BookAddIFrame extends JInternalFrame {
 	class addBookActionListener implements ActionListener { // 添加按钮的单击事件监听器
 		public void actionPerformed(final ActionEvent e) {
 			if (ISBN.getText().length() == 0) {
-				JOptionPane.showMessageDialog(null, "书号文本框不可以为空");
+				JOptionPane.showMessageDialog(null, "图书编号不能为空！");
 				return;
 			}
 			if (ISBN.getText().length() != 13) {
-				JOptionPane.showMessageDialog(null, "书号文本框输入位数为13位");
+				JOptionPane.showMessageDialog(null, "请输入正确的13位图书编号！");
 				return;
 			}
 			if (bookName.getText().length() == 0) {
-				JOptionPane.showMessageDialog(null, "图书名称文本框不可以为空");
+				JOptionPane.showMessageDialog(null, "书名不能为空");
 				return;
 			}
 			if (writer.getText().length() == 0) {
-				JOptionPane.showMessageDialog(null, "作者文本框不可以为空");
+				JOptionPane.showMessageDialog(null, "作者不能为空");
 				return;
 			}
 			if (pubDate.getText().length() == 0) {
-				JOptionPane.showMessageDialog(null, "出版日期文本框不可以为空");
+				JOptionPane.showMessageDialog(null, "出版日期不能为空");
 				return;
 			}
 			if (price.getText().length() == 0) {
-				JOptionPane.showMessageDialog(null, "单价文本框不可以为空");
+				JOptionPane.showMessageDialog(null, "单价不能为空");
 				return;
 			}
 			String ISBNs = ISBN.getText().trim();

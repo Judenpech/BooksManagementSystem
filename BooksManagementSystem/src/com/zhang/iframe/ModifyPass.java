@@ -30,7 +30,6 @@ public class ModifyPass extends JInternalFrame {
 
 	public ModifyPass() {
 		super();
-
 		setIconifiable(true);
 		setTitle("更改密码");
 		setClosable(true);
@@ -49,7 +48,7 @@ public class ModifyPass extends JInternalFrame {
 
 		final JLabel label_5 = new JLabel();
 		label_5.setFont(new Font("", Font.PLAIN, 14));
-		label_5.setText("登  录  名：");
+		label_5.setText("用  户  名：");
 		final GridBagConstraints gridBagConstraints_11 = new GridBagConstraints();
 		gridBagConstraints_11.gridy = 2;
 		gridBagConstraints_11.gridx = 0;
@@ -139,10 +138,10 @@ public class ModifyPass extends JInternalFrame {
 						JOptionPane.showMessageDialog(getContentPane(), "密码修改成功。");
 						doDefaultCloseAction();
 					} else {
-						JOptionPane.showMessageDialog(getContentPane(), "两次输入的密码不一致，请重新输入。");
+						JOptionPane.showMessageDialog(getContentPane(), "两次输入的密码不一致，请重新输入！");
 					}
 				} else {
-					JOptionPane.showMessageDialog(getContentPane(), "旧密码输入错误，请确认密码。");
+					JOptionPane.showMessageDialog(getContentPane(), "旧密码输入错误，请确认密码！");
 				}
 			}
 		});

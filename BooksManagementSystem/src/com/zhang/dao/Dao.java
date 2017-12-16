@@ -16,7 +16,7 @@ import com.zhang.model.User;
 
 public class Dao {
 	protected static String dbClassName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	protected static String dbUrl = "jdbc:sqlserver://localhost:1433;" + "DatabaseName=BMSBase";// SelectMethod=Cursor";
+	protected static String dbUrl = "jdbc:sqlserver://localhost:1433;" + "DatabaseName=BMSBase; SelectMethod=Cursor";
 	protected static String dbUser = "sa";
 	protected static String dbPwd = "sa";
 	protected static String second = null;
@@ -81,20 +81,20 @@ public class Dao {
 	/*
 	 * 管理员登录方法
 	 */
-	public static Operator check(String name, String password) {
+	public static Operator check(String id, String password) {
 		int i = 0;
 		Operator operater = new Operator();
-		String sql = "select *  from tb_operator where name='" + name + "' and password='" + password
+		String sql = "select *  from tb_operator where id='" + id + "' and password='" + password
 				+ "'and admin=1";
 		ResultSet rs = Dao.executeQuery(sql);
 		try {
 			while (rs.next()) {
-				String names = rs.getString("name");
+				String ids = rs.getString("id");
 				operater.setId(rs.getString("id"));
 				operater.setName(rs.getString("name"));
 				operater.setGrade(rs.getString("admin"));
 				operater.setPassword(rs.getString("password"));
-				if (names != null) {
+				if (ids != null) {
 					i = 1;
 				}
 			}

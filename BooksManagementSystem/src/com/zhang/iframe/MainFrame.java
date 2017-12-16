@@ -2,6 +2,7 @@ package com.zhang.iframe;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
@@ -45,9 +46,9 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 		super();
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		// setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setLocationByPlatform(true);
-		setSize(900, 700);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();  //获取屏幕size
+		setSize(dim); //全屏
 		setTitle("图书信息管理系统");
 		JMenuBar menuBar = createMenu(); // 调用创建菜单栏的方法
 		setJMenuBar(menuBar);
@@ -74,43 +75,41 @@ public class MainFrame extends JFrame {
 	 * 
 	 * @return JToolBar
 	 */
-	private JToolBar createToolBar() { // 创建工具栏的方法
-		JToolBar toolBar = new JToolBar();
+	private JToolBar createToolBar() { 
+		JToolBar toolBar = new JToolBar();// 创建工具栏的方法
 		toolBar.setFloatable(false);
 		toolBar.setBorder(new BevelBorder(BevelBorder.RAISED));
+		// 在工具栏中添加  图书信息添加
 		JButton bookAddButton = new JButton(MenuActions.BOOK_ADD);
-		// ImageIcon icon=CreatecdIcon.add("bookAdd.bmp");//创建图标方法
-		ImageIcon icon = new ImageIcon(MainFrame.class.getResource("/bookAddtb.jpg"));// 添加菜单栏图标
+		ImageIcon icon=CreateIcon.add("bookAddtb.jpg");//创建图标方法
 		bookAddButton.setIcon(icon);
 		bookAddButton.setHideActionText(true);
-		// bookAddButton.setToolTipText("fjdkjfk");//图片上提示字
 		toolBar.add(bookAddButton);
-		// toolBar.add(MenuActions.BOOK_MODIFY);
-		// 在工具栏中添加图书修改与删除图标
+		// 在工具栏中添加  图书信息修改与删除图标
 		JButton bookModiAndDelButton = new JButton(MenuActions.BOOK_MODIFY);
 		ImageIcon bookmodiicon = CreateIcon.add("bookModiAndDeltb.jpg");// 创建图标方法
 		bookModiAndDelButton.setIcon(bookmodiicon);
 		bookModiAndDelButton.setHideActionText(true);
 		toolBar.add(bookModiAndDelButton);
-
+		// 在工具栏中添加  图书类别添加
 		JButton bookTypeAddButton = new JButton(MenuActions.BOOKTYPE_ADD);
 		ImageIcon bookTypeAddicon = CreateIcon.add("bookTypeAddtb.jpg");// 创建图标方法
 		bookTypeAddButton.setIcon(bookTypeAddicon);
 		bookTypeAddButton.setHideActionText(true);
 		toolBar.add(bookTypeAddButton);
-
+		// 在工具栏中添加  读者信息添加
 		JButton readerAddButton = new JButton(MenuActions.READER_ADD);
 		ImageIcon readerAddicon = CreateIcon.add("readerAddtb.jpg");// 创建图标方法
 		readerAddButton.setIcon(readerAddicon);
 		readerAddButton.setHideActionText(true);
 		toolBar.add(readerAddButton);
-
+		// 在工具栏中添加  读者信息修改与删除
 		JButton readerModiAndDelButton = new JButton(MenuActions.READER_MODIFY);
 		ImageIcon readerModiAndDelicon = CreateIcon.add("readerModiAndDeltb.jpg");// 创建图标方法
 		readerModiAndDelButton.setIcon(readerModiAndDelicon);
 		readerModiAndDelButton.setHideActionText(true);
 		toolBar.add(readerModiAndDelButton);
-
+		// 在工具栏中添加  退出系统
 		JButton ExitButton = new JButton(MenuActions.EXIT);
 		ImageIcon Exiticon = CreateIcon.add("exittb.jpg");// 创建图标方法
 		ExitButton.setIcon(Exiticon);
@@ -122,10 +121,11 @@ public class MainFrame extends JFrame {
 	/**
 	 * 创建菜单栏
 	 */
-	private JMenuBar createMenu() { // 创建菜单栏的方法
-		JMenuBar menuBar = new JMenuBar();
-		JMenu baseMenu = new JMenu();// 初始化基础数据维护菜单
-		baseMenu.setIcon(CreateIcon.add("jcsjcd.jpg"));
+	private JMenuBar createMenu() { 
+		JMenuBar menuBar = new JMenuBar();// 创建菜单栏的方法
+		// 初始化基础数据维护菜单
+		JMenu baseMenu = new JMenu();
+		baseMenu.setIcon(CreateIcon.add("jcsjwhcd.jpg"));
 		{
 			JMenu readerManagerMItem = new JMenu("读者信息管理");
 			readerManagerMItem.add(MenuActions.READER_ADD);
@@ -145,9 +145,10 @@ public class MainFrame extends JFrame {
 			baseMenu.addSeparator();
 			baseMenu.add(MenuActions.EXIT);
 		}
-		JMenu sysManageMenu = new JMenu(); // 系统维护
-		sysManageMenu.setIcon(CreateIcon.add("jcwhcd.jpg"));
-		JMenu userManageMItem = new JMenu("用户管理"); // 用户管理
+		// 初始化系统维护菜单
+		JMenu sysManageMenu = new JMenu(); 
+		sysManageMenu.setIcon(CreateIcon.add("xtwhcd.jpg"));
+		JMenu userManageMItem = new JMenu("用户管理"); 
 		userManageMItem.add(MenuActions.USER_ADD);
 		userManageMItem.add(MenuActions.USER_MODIFY);
 		sysManageMenu.add(MenuActions.MODIFY_PASSWORD);
