@@ -120,7 +120,7 @@ GO
 SET ANSI_PADDING ON
 GO
 
-CREATE TABLE [dbo].[UserInformation](
+CREATE TABLE [dbo].[tb_user](
 	[Id] [int] NOT NULL,
 	[Name] [varchar](6) NOT NULL,
 	[Sex] [varchar](2) NOT NULL,
@@ -130,47 +130,48 @@ CREATE TABLE [dbo].[UserInformation](
 	[Tel] [varchar](15) NOT NULL,
 	[Yajin] [int] NOT NULL,
 	[Password] [nvarchar](10) NOT NULL,
-	[admin] [nchar](10) NOT NULL,
- CONSTRAINT [PK_UserInformation] PRIMARY KEY CLUSTERED 
+	[Admin] [nchar](10) NOT NULL,
+ CONSTRAINT [PK_tb_user] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
-CREATE TABLE [dbo].[BookType](
+CREATE TABLE [dbo].[tb_bookType](
 	[TypeName] [varchar](20) NOT NULL,
 	[Id] [int] NOT NULL,
- CONSTRAINT [PK_BookType] PRIMARY KEY CLUSTERED 
+	[Days] [datetime] NULL,
+ CONSTRAINT [PK_tb_bookType] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
-CREATE TABLE [dbo].[ReaderInformation](
+CREATE TABLE [dbo].[tb_reader](
 	[Name] [varchar](20) NOT NULL,
 	[Sex] [varchar](2) NOT NULL,
 	[Age] [int] NOT NULL,
-	[identityCard] [varchar](30) NOT NULL,
+	[IdentityCard] [varchar](30) NOT NULL,
 	[Date] [smalldatetime] NOT NULL,
-	[maxNum] [int] NOT NULL,
+	[MaxNum] [int] NOT NULL,
 	[Tel] [varchar](15) NOT NULL,
-	[keepMoney] [money] NOT NULL,
+	[KeepMoney] [money] NOT NULL,
 	[Zj] [varchar](10) NOT NULL,
 	[Zy] [varchar](50) NOT NULL,
 	[ISBN] [varchar](13) NOT NULL,
-	[bztime] [datetime] NOT NULL
+	[Bztime] [datetime] NOT NULL
 ) ON [PRIMARY]
 
-CREATE TABLE [dbo].[BookInformation](
+CREATE TABLE [dbo].[tb_bookInfo](
 	[ISBN] [varchar](13) NOT NULL,
-	[typeId] [int] NOT NULL,
+	[Typeid] [int] NOT NULL,
 	[Bookname] [varchar](60) NOT NULL,
 	[Writer] [varchar](21) NOT NULL,
-	[Translater] [varchar](30) NULL,
-	[Publisher] [varchar](50) NOT NULL,
+	[Translator] [varchar](30) NULL,
+	[Publisher] [varchar](50),
 	[Date] [smalldatetime] NOT NULL,
 	[Price] [money] NOT NULL,
- CONSTRAINT [PK_BookInformation] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_tb_bookInfo] PRIMARY KEY CLUSTERED 
 (
 	[ISBN] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
@@ -179,12 +180,9 @@ CREATE TABLE [dbo].[BookInformation](
 CREATE TABLE [dbo].[tb_operator](
 	[Id] [int] NOT NULL,
 	[Name] [varchar](10) NOT NULL,
-	[Sex] [varchar](2) NOT NULL,
-	[Age] [int] NOT NULL,
-	[Identitycard] [varchar](10) NOT NULL,
-	[Tel] [nchar](11) NOT NULL,
+	[Grade] [int] NOT NULL ,
 	[Password] [nvarchar](10) NOT NULL,
-	[admin] [int] NOT NULL 
+	[admin][int] NOT NULL ,
 ) ON [PRIMARY]
 
 GO

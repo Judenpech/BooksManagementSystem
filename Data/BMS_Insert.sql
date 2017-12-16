@@ -1,7 +1,7 @@
 USE [BMSBase] 
 
 --插入用户信息表
-INSERT UserInformation						
+INSERT tb_user					
 	(Id
 	,Name
 	,Sex
@@ -11,7 +11,7 @@ INSERT UserInformation
 	,Tel
 	,Yajin
 	,Password
-	,admin)
+	,Admin)
 	VALUES					
 	(1,'唐紫麒','女',18 ,'352188200003221234','2017-11-11','18396129073',10,'8888','张敏')
 	,(2,'张振涛','男',18 ,'352188199907121234','2017-11-11','13750861454',10,'8888','施罗霞')
@@ -25,31 +25,32 @@ INSERT UserInformation
 
 
 --插入图书类别表
-INSERT BookType
-	(TypeName
-	,Id)
+INSERT tb_bookType
+(TypeName
+	,Id
+	,Days)
 	VALUES
-	('中国文学',1)
-	,('医药卫生',2)
-	,('小说类',3)
-	,('计算机技术',4)
-	,('外国文学',5)
-	,('军事',6)
+	('中国文学',1,null)
+	,('医药卫生',2,null)
+	,('小说类',3,null)
+	,('计算机技术',4,null)
+	,('外国文学',5,null)
+	,('军事',6,null)
 
 --插入读者信息表
-INSERT ReaderInformation
+INSERT tb_reader
    (Name
 	,Sex
 	,Age
-	,identityCard
+	,IdentityCard
 	,Date
-	,maxNum
+	,MaxNum
 	,Tel
-	,keepMoney
+	,KeepMoney
 	,Zj
 	,Zy
 	,ISBN
-	,bztime)
+	,Bztime)
 	VALUES
 	('唐紫麒','女',	18 	,'352188200003221234','2017-3-11' ,6,'13124567890',10	,'身份证','学生','9787513506915','2017-9-20')
 	,('张振涛','男',18 ,'352188199907121234','2017-3-12' ,6,'13243564343',10,'身份证','学生','9787811373226','2017-9-20')
@@ -62,12 +63,12 @@ INSERT ReaderInformation
 	,('龚俊','男',37,'352188198002012123','2017-11-11',8 ,'13244565678',15,'身份证','老师','9787562154259','2005-5-23')
 
 --插入图书信息表
-INSERT BookInformation
-	(ISBN
-	,typeId
+INSERT tb_bookInfo
+(ISBN
+	,Typeid
 	,Bookname
 	,Writer
-	,Translater
+	,Translator
 	,Publisher
 	,Date
 	,Price)
@@ -103,16 +104,13 @@ INSERT BookInformation
 INSERT tb_operator
     (Id
 	,Name
-	,Sex
-	,Age
-	,Identitycard
-	,Tel
+	,Grade
 	,Password
 	,admin)
 	VALUES
-	(1,'张敏','女',18,'3150707008','18396129517','6666',1)
-	,(2,'施罗霞','女',18,'3150707009','18396129035','6666',1)
-	,(3,'吴小菁','女',18,'3150707010','18396129280','6666',1)
-	,(4,'李靖','女',18,'3150707012','18396128763','6666',1)
-	,(5,'朱述欣','女',18,'3150707013','18396129675','6666',1)
-	,(6,'刘昭凤','女',18,'3150707017','18396128939','6666',1);
+	(1,'张敏',1,'6666',1)
+	,(2,'施罗霞',1,'6666',1)
+	,(3,'吴小菁',1,'6666',1)
+	,(4,'李靖',1,'6666',1)
+	,(5,'朱述欣',1,'6666',1)
+	,(6,'刘昭凤',1,'6666',1)
