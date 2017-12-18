@@ -44,7 +44,7 @@ import com.zhang.util.CreateIcon;
 import com.zhang.util.MyDocument;
 
 /**
- * 名称：图书修改窗体
+ * 名称：图书信息修改与删除窗体
  *
  */
 public class BookModiAndDelIFrame extends JInternalFrame {
@@ -65,7 +65,7 @@ public class BookModiAndDelIFrame extends JInternalFrame {
 
 	// 取数据库中图书相关信息放入表格中
 	private Object[][] getFileStates(List list) {
-		String[] columnNames = { "图书编号", "图书类别", "图书名称", "作者", "译者", "出版商", "出版日期", "价格" };
+		String[] columnNames = { "ISBN", "图书类别", "图书名称", "作者", "译者", "出版商", "出版日期", "价格" };
 		Object[][] results = new Object[list.size()][columnNames.length];
 
 		for (int i = 0; i < list.size(); i++) {
@@ -81,7 +81,6 @@ public class BookModiAndDelIFrame extends JInternalFrame {
 			results[i][7] = bookinfo.getPrice();
 		}
 		return results;
-
 	}
 
 	public BookModiAndDelIFrame() {
@@ -91,9 +90,7 @@ public class BookModiAndDelIFrame extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setTitle("图书信息修改与删除");
-		setBounds(100, 100, 640, 406);// 移动组件并调整其大小。由 x 和 y 指定左上角的新位置，由 width 和
-										// height 指定新的大小。
-
+		setBounds(100, 100, 1030, 756);// 移动组件并调整其大小。由 x 和 y 指定左上角的新位置，由 width和height指定新的大小。
 		final JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(SystemColor.activeCaptionBorder, 1, false));
 		getContentPane().add(panel_1, BorderLayout.SOUTH);
@@ -114,9 +111,9 @@ public class BookModiAndDelIFrame extends JInternalFrame {
 				String ISBNs = ISBN.getText().trim();
 				int i = Dao.Delbook(ISBNs);
 				if (i == 1) {
-					JOptionPane.showMessageDialog(null, "删除成功");
+					JOptionPane.showMessageDialog(null, "图书信息删除成功");
 					Object[][] results = getFileStates(Dao.selectBookInfo());
-					// 注释代码为使用表格模型
+					// 使用表格模型
 					DefaultTableModel model = new DefaultTableModel();
 					table.setModel(model);
 					model.setDataVector(results, columnNames);
@@ -133,14 +130,13 @@ public class BookModiAndDelIFrame extends JInternalFrame {
 				doDefaultCloseAction();
 			}
 		});
-		button_1.setText("关闭");
+		button_1.setText("退出");
 		panel_1.add(button_1);
 
 		final JLabel headLogo = new JLabel();
 		ImageIcon bookModiAndDelIcon = CreateIcon.add("bookmodify.jpg");
 		headLogo.setIcon(bookModiAndDelIcon);
 		headLogo.setOpaque(true);
-		headLogo.setBackground(Color.CYAN);
 		headLogo.setPreferredSize(new Dimension(400, 80));
 		headLogo.setBorder(new LineBorder(SystemColor.activeCaptionBorder, 1, false));
 		getContentPane().add(headLogo, BorderLayout.NORTH);
@@ -149,20 +145,19 @@ public class BookModiAndDelIFrame extends JInternalFrame {
 		final BorderLayout borderLayout_1 = new BorderLayout();
 		borderLayout_1.setVgap(5);
 		panel_2.setLayout(borderLayout_1);
-		panel_2.setBorder(new EmptyBorder(5, 10, 5, 10));
+		panel_2.setBorder(new EmptyBorder(5, 10, 15, 10));
 		getContentPane().add(panel_2);
 
 		final JScrollPane scrollPane = new JScrollPane();
 		panel_2.add(scrollPane);
 
 		Object[][] results = getFileStates(Dao.selectBookInfo());
-		columnNames = new String[] { "图书编号", "图书类别", "图书名称", "作者", "译者", "出版商", "出版日期", "价格" };
+		columnNames = new String[] { "ISBN", "图书类别", "图书名称", "作者", "译者", "出版商", "出版日期", "价格" };
 		table = new JTable(results, columnNames);
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 
 		// 鼠标单击表格中的内容产生事件,将表格中的内容放入文本框中
 		table.addMouseListener(new TableListener());
-
 		scrollPane.setViewportView(table);
 
 		final JPanel bookPanel = new JPanel();
@@ -174,7 +169,7 @@ public class BookModiAndDelIFrame extends JInternalFrame {
 
 		final JLabel label_2 = new JLabel();
 		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setText("书       号：");
+		label_2.setText(" I S B N ： ");
 		bookPanel.add(label_2);
 
 		ISBN = new JTextField();
@@ -182,7 +177,7 @@ public class BookModiAndDelIFrame extends JInternalFrame {
 		bookPanel.add(ISBN);
 		final JLabel label = new JLabel();
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setText("类       别：");
+		label.setText("类      别：");
 		bookPanel.add(label);
 
 		bookType = new JComboBox();
@@ -209,7 +204,7 @@ public class BookModiAndDelIFrame extends JInternalFrame {
 
 		final JLabel label_3 = new JLabel();
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setText("作       者：");
+		label_3.setText("作    者：");
 		bookPanel.add(label_3);
 
 		writer = new JTextField();
@@ -233,7 +228,7 @@ public class BookModiAndDelIFrame extends JInternalFrame {
 
 		final JLabel label_1_1 = new JLabel();
 		label_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1_1.setText("出 版 日 期：");
+		label_1_1.setText("出版日期：");
 		bookPanel.add(label_1_1);
 
 		SimpleDateFormat myfmt = new SimpleDateFormat("yyyy-MM-dd");
@@ -282,32 +277,32 @@ public class BookModiAndDelIFrame extends JInternalFrame {
 		public void actionPerformed(final ActionEvent e) {
 			// 修改图书信息表
 			if (ISBN.getText().length() == 0) {
-				JOptionPane.showMessageDialog(null, "书号文本框不可以为空或则输入数字不可以大于13个");
+				JOptionPane.showMessageDialog(null, "您输入的ISBN号码无效！");
 				return;
 			}
 			if (ISBN.getText().length() != 13) {
-				JOptionPane.showMessageDialog(null, "书号文本框输入位数为13位");
+				JOptionPane.showMessageDialog(null, "请输入有效的13位ISBN号码！");
 				return;
 			}
 			if (bookName.getText().length() == 0) {
-				JOptionPane.showMessageDialog(null, "图书名称文本框不可以为空");
+				JOptionPane.showMessageDialog(null, "书名不能为空！");
 				return;
 			}
 			if (writer.getText().length() == 0) {
-				JOptionPane.showMessageDialog(null, "作者文本框不可以为空");
+				JOptionPane.showMessageDialog(null, "作者不能为空！");
 				return;
 			}
 			if (publisher.getText().length() == 0) {
-				JOptionPane.showMessageDialog(null, "出版人文本框不可以为空");
+				JOptionPane.showMessageDialog(null, "出版社不能为空！");
 				return;
 			}
 			// 日期与单价进行数字验证代码？
 			if (pubDate.getText().length() == 0) {
-				JOptionPane.showMessageDialog(null, "出版日期文本框不可以为空");
+				JOptionPane.showMessageDialog(null, "出版日期不能为空！");
 				return;
 			}
 			if (price.getText().length() == 0) {
-				JOptionPane.showMessageDialog(null, "单价文本框不可以为空");
+				JOptionPane.showMessageDialog(null, "单价不能为空！");
 				return;
 			}
 

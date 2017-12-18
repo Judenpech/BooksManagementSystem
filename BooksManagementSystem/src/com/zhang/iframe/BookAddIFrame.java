@@ -38,7 +38,7 @@ import com.zhang.util.MyDocument;
 import com.zhang.util.CreateIcon;
 
 /**
- * 名称：图书添加窗体
+ * 名称：图书信息添加窗体
  * 
  */
 public class BookAddIFrame extends JInternalFrame {
@@ -60,20 +60,20 @@ public class BookAddIFrame extends JInternalFrame {
 		super();
 		final BorderLayout borderLayout = new BorderLayout();
 		getContentPane().setLayout(borderLayout);
-		setIconifiable(true); // 设置窗体可最小化－－－必须
-		setClosable(true); // 设置窗体可关闭－－－必须
-		setTitle("图书信息添加"); // 设置窗体标题－－－必须
-		setBounds(100, 100, 520, 340); // 设置窗体位置和大小－－－必须
+		setIconifiable(true); // 设置窗体可最小化
+		setClosable(true); // 设置窗体可关闭
+		setTitle("图书信息添加"); // 设置窗体标题
+		setBounds(100, 100, 550, 300); // 设置窗体位置和大小
 
 		final JPanel panel = new JPanel();
-		panel.setBorder(new EmptyBorder(20, 10, 10, 20));
+		panel.setBorder(new EmptyBorder(10, 10, 20, 10));
 		final GridLayout gridLayout = new GridLayout(0, 4);
 		gridLayout.setVgap(5);
 		gridLayout.setHgap(5);
 		panel.setLayout(gridLayout);
 		getContentPane().add(panel);
 		final JLabel label_2 = new JLabel();
-		label_2.setText("图书编号：");
+		label_2.setText("ISBN：");
 		panel.add(label_2);
 
 		ISBN = new JTextField("13位图书编号不能为空！", 13);
@@ -168,7 +168,7 @@ public class BookAddIFrame extends JInternalFrame {
 
 		buttonclose = new JButton();
 		buttonclose.addActionListener(new CloseActionListener());
-		buttonclose.setText("关闭");
+		buttonclose.setText("退出");
 		panel_1.add(buttonclose);
 
 		final JLabel label_5 = new JLabel();
@@ -177,7 +177,7 @@ public class BookAddIFrame extends JInternalFrame {
 		label_5.setPreferredSize(new Dimension(400, 80));
 		label_5.setBorder(new LineBorder(SystemColor.activeCaptionBorder, 1, false));
 		getContentPane().add(label_5, BorderLayout.NORTH);
-		label_5.setText("新书定购(LOGO图片)");
+		//label_5.setText("新书定购(LOGO图片)");
 
 		setVisible(true); // 显示窗体可关闭－－－必须在添加所有控件之后执行该语句
 	}
@@ -185,7 +185,7 @@ public class BookAddIFrame extends JInternalFrame {
 	class ISBNFocusListener extends FocusAdapter {
 		public void focusLost(FocusEvent e) {
 			if (!Dao.selectBookInfo(ISBN.getText().trim()).isEmpty()) {
-				JOptionPane.showMessageDialog(null, "添加的书号已存在！");
+				JOptionPane.showMessageDialog(null, "您输入的ISBN已存在！");
 				return;
 			}
 		}
@@ -216,19 +216,19 @@ public class BookAddIFrame extends JInternalFrame {
 				return;
 			}
 			if (bookName.getText().length() == 0) {
-				JOptionPane.showMessageDialog(null, "书名不能为空");
+				JOptionPane.showMessageDialog(null, "书名不能为空！");
 				return;
 			}
 			if (writer.getText().length() == 0) {
-				JOptionPane.showMessageDialog(null, "作者不能为空");
+				JOptionPane.showMessageDialog(null, "作者不能为空！");
 				return;
 			}
 			if (pubDate.getText().length() == 0) {
-				JOptionPane.showMessageDialog(null, "出版日期不能为空");
+				JOptionPane.showMessageDialog(null, "出版日期不能为空！");
 				return;
 			}
 			if (price.getText().length() == 0) {
-				JOptionPane.showMessageDialog(null, "单价不能为空");
+				JOptionPane.showMessageDialog(null, "单价不能为空！");
 				return;
 			}
 			String ISBNs = ISBN.getText().trim();
@@ -249,7 +249,7 @@ public class BookAddIFrame extends JInternalFrame {
 					java.sql.Date.valueOf(pubDates), Double.parseDouble(prices));
 
 			if (i == 1) {
-				JOptionPane.showMessageDialog(null, "添加成功");
+				JOptionPane.showMessageDialog(null, "图书信息添加成功！");
 				doDefaultCloseAction();
 			}
 		}

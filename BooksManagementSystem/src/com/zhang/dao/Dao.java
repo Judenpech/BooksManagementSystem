@@ -150,8 +150,7 @@ public class Dao {
 	 * 图书类别表相关操作
 	 * 
 	 */
-	// 插入图书类型
-	public static int InsertBookType(String bookTypeName) {
+	public static int InsertBookType(String bookTypeName) {	// 插入图书类型
 		int i = 0;
 		try {
 			String sql = "insert into tb_bookType(typeName) values('" + bookTypeName + "')";
@@ -162,8 +161,7 @@ public class Dao {
 		return i;
 	}
 
-	// 更新图书类别
-	public static int UpdatebookType(String id, String typeName) {
+	public static int UpdatebookType(String id, String typeName) {	// 更新图书类别
 		int i = 0;
 		try {
 			String sql = "update tb_bookType set typeName='" + typeName + "' where id='" + id + "'";
@@ -176,8 +174,7 @@ public class Dao {
 		return i;
 	}
 
-	// 删除图书类别
-	public static int DelbookType(String id) {
+	public static int DelbookType(String id) {	// 删除图书类别
 		int i = 0;
 		try {
 			String sql = "delete from tb_bookType where id='" + id + "'";
@@ -196,9 +193,8 @@ public class Dao {
 	/*
 	 * 插入图书信息方法
 	 */
-	// 插入图书信息
 	public static int Insertbook(String ISBN, String typeId, String bookname, String writer, String translator,
-			String publisher, Date date, Double price) {
+			String publisher, Date date, Double price) {	// 插入图书信息
 		int i = 0;
 		try {
 			String sql = "insert into tb_bookInfo(ISBN,typeId,bookname,writer,translator,publisher,date,price) values('"

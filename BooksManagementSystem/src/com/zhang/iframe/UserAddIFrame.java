@@ -44,8 +44,8 @@ public class UserAddIFrame extends JInternalFrame {
 		super();
 		setIconifiable(true);
 		setClosable(true);
-		setTitle("系统管理员信息添加");
-		setBounds(120, 120, 450, 320);
+		setTitle("用户信息添加");
+		setBounds(120, 120, 450, 350);
 
 		final JPanel panel = new JPanel();
 		getContentPane().add(panel);
@@ -58,45 +58,45 @@ public class UserAddIFrame extends JInternalFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if (arg0.getSource() == button) {
 					if (textField.getText().length() == 0) {
-						JOptionPane.showMessageDialog(null, "用户名不能为空");
+						JOptionPane.showMessageDialog(null, "用户姓名不能为空！");
 						return;
 					}
 					if (textField.getText().length() > 12) {
-						JOptionPane.showMessageDialog(null, "用户名位数不能大于十二位");
+						JOptionPane.showMessageDialog(null, "用户姓名不能大于12位！");
 						return;
 					}
 					if (textField_1.getText().length() > 18) {
-						JOptionPane.showMessageDialog(null, "证件号码必有小于18位");
+						JOptionPane.showMessageDialog(null, "证件号码必须小于18位！");
 						return;
 					}
 
 					if (textField_2.getText().length() == 0) {
-						JOptionPane.showMessageDialog(null, "年龄不能为空");
+						JOptionPane.showMessageDialog(null, "年龄不能为空！");
 						return;
 					}
 
 					if (textField_3.getText().length() == 0) {
-						JOptionPane.showMessageDialog(null, "日期不能为空");
+						JOptionPane.showMessageDialog(null, "办证日期不能为空！");
 						return;
 					}
 					if (textField_4.getText().length() == 0) {
-						JOptionPane.showMessageDialog(null, "电话不能为空");
+						JOptionPane.showMessageDialog(null, "联系电话不能为空！");
 						return;
 					}
 					if (textField_4.getText().length() != 11) {
-						JOptionPane.showMessageDialog(null, "电话号必须是十一位");
+						JOptionPane.showMessageDialog(null, "电话号必须是11位！");
 						return;
 					}
 					if (textField_5.getText().length() == 0) {
-						JOptionPane.showMessageDialog(null, "押金不能为空");
+						JOptionPane.showMessageDialog(null, "押金不能为空！");
 						return;
 					}
 					if (textField_6.getText().length() == 0) {
-						JOptionPane.showMessageDialog(null, "密码不能为空");
+						JOptionPane.showMessageDialog(null, "密码不能为空！");
 						return;
 					}
 					if (textField_6.getText().length() > 15) {
-						JOptionPane.showMessageDialog(null, "密码不能大于十五位");
+						JOptionPane.showMessageDialog(null, "密码不能大于15位！");
 						return;
 					}
 					String username = textField.getText();
@@ -121,7 +121,7 @@ public class UserAddIFrame extends JInternalFrame {
 			}
 		});
 		final JButton button_1 = new JButton();
-		button_1.setText("取消");
+		button_1.setText("退出");
 		panel.add(button_1);
 		button_1.addActionListener(new CloseActionListener());
 
@@ -210,7 +210,7 @@ public class UserAddIFrame extends JInternalFrame {
 		label_4.setText("联系电话：");
 		panel_2.add(label_4);
 
-		textField_4 = new JTextField("电话号必须是十一位", 11);
+		textField_4 = new JTextField("电话号必须是11位", 11);
 
 		textField_4.setDocument(new MyDocument(11));
 

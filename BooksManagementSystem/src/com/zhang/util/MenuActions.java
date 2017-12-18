@@ -54,9 +54,9 @@ public class MenuActions {
 
 	private static class PasswordModiAction extends AbstractAction {
 		PasswordModiAction() {
-			putValue(Action.NAME, "更改口令");
+			putValue(Action.NAME, "修改密码");
 			putValue(Action.LONG_DESCRIPTION, "修改当前用户密码");
-			putValue(Action.SHORT_DESCRIPTION, "更换口令");
+			putValue(Action.SHORT_DESCRIPTION, "修改密码");
 			// 在“更改口令”提示中显示的文字
 			// putValue(Action.SMALL_ICON,CreatecdIcon.add("bookAddtb.jpg"));
 			// 将图标存储到动作对象中
@@ -64,19 +64,19 @@ public class MenuActions {
 		}
 
 		public void actionPerformed(ActionEvent e) {
-			if (!frames.containsKey("更改密码") || frames.get("更改密码").isClosed()) {
+			if (!frames.containsKey("修改密码") || frames.get("修改密码").isClosed()) {
 				ModifyPass iframe = new ModifyPass();
-				frames.put("更改密码", iframe);
-				MainFrame.addIFame(frames.get("更改密码"));
+				frames.put("修改密码", iframe);
+				MainFrame.addIFame(frames.get("修改密码"));
 			}
 		}
 	}
 
 	private static class UserModiAction extends AbstractAction {
 		UserModiAction() {
-			super("用户修改与删除", null);
-			putValue(Action.LONG_DESCRIPTION, "修改和删除用户信息");
-			putValue(Action.SHORT_DESCRIPTION, "用户修改与删除");
+			super("用户信息修改与删除", null);
+			putValue(Action.LONG_DESCRIPTION, "修改与删除用户信息");
+			putValue(Action.SHORT_DESCRIPTION, "用户信息修改与删除");
 		}
 
 		public void actionPerformed(ActionEvent e) {
@@ -90,9 +90,9 @@ public class MenuActions {
 
 	private static class UserAddAction extends AbstractAction {
 		UserAddAction() {
-			super("用户添加", null);
+			super("用户信息添加", null);
 			putValue(Action.LONG_DESCRIPTION, "添加新的用户");
-			putValue(Action.SHORT_DESCRIPTION, "用户添加");
+			putValue(Action.SHORT_DESCRIPTION, "用户信息添加");
 		}
 
 		public void actionPerformed(ActionEvent e) {
@@ -108,7 +108,7 @@ public class MenuActions {
 	private static class BookTypeModiAction extends AbstractAction {
 		BookTypeModiAction() {
 			super("图书类别修改", null);
-			putValue(Action.LONG_DESCRIPTION, "修改图书的类别信息");
+			putValue(Action.LONG_DESCRIPTION, "修改图书类别信息");
 			putValue(Action.SHORT_DESCRIPTION, "图书类别修改");
 		}
 
@@ -124,7 +124,7 @@ public class MenuActions {
 	private static class BookTypeAddAction extends AbstractAction {
 		BookTypeAddAction() {
 			super("图书类别添加", null);
-			putValue(Action.LONG_DESCRIPTION, "为图书馆添加新的图书类别");
+			putValue(Action.LONG_DESCRIPTION, "添加新的图书类别");
 			putValue(Action.SHORT_DESCRIPTION, "图书类别添加");
 		}
 
@@ -139,9 +139,9 @@ public class MenuActions {
 
 	private static class ReaderModiAction extends AbstractAction {
 		ReaderModiAction() {
-			super("读者修改与删除", null);
-			putValue(Action.LONG_DESCRIPTION, "修改和删除读者的基本信息");
-			putValue(Action.SHORT_DESCRIPTION, "读者修改与删除");
+			super("读者信息修改与删除", null);
+			putValue(Action.LONG_DESCRIPTION, "修改和删除读者信息");
+			putValue(Action.SHORT_DESCRIPTION, "读者信息修改与删除");
 		}
 
 		public void actionPerformed(ActionEvent e) {
@@ -157,15 +157,15 @@ public class MenuActions {
 	private static class ReaderAddAction extends AbstractAction {
 		ReaderAddAction() {
 			super("读者信息添加", null);
-			putValue(Action.LONG_DESCRIPTION, "为图书馆添加新的读者会员信息");
+			putValue(Action.LONG_DESCRIPTION, "添加新的读者信息");
 			putValue(Action.SHORT_DESCRIPTION, "读者信息添加");
 		}
 
 		public void actionPerformed(ActionEvent e) {
-			if (!frames.containsKey("读者相关信息添加") || frames.get("读者相关信息添加").isClosed()) {
+			if (!frames.containsKey("读者信息添加") || frames.get("读者信息添加").isClosed()) {
 				ReaderAddIFrame iframe = new ReaderAddIFrame();
-				frames.put("读者相关信息添加", iframe);
-				MainFrame.addIFame(frames.get("读者相关信息添加"));
+				frames.put("读者信息添加", iframe);
+				MainFrame.addIFame(frames.get("读者信息添加"));
 			}
 		}
 	}
@@ -187,11 +187,10 @@ public class MenuActions {
 		}
 	}
 
-	private static class BookAddAction extends AbstractAction { // 图书信息添加－－－已经实现，请参照
+	private static class BookAddAction extends AbstractAction { // 图书信息添加
 		BookAddAction() {
 			super("图书信息添加", null);
-			// super();
-			putValue(Action.LONG_DESCRIPTION, "为图书馆添加新的图书信息");
+			putValue(Action.LONG_DESCRIPTION, "添加新的图书信息");
 			putValue(Action.SHORT_DESCRIPTION, "图书信息添加");
 		}
 
@@ -207,7 +206,7 @@ public class MenuActions {
 	private static class ExitAction extends AbstractAction { // 退出系统动作
 		public ExitAction() {
 			super("退出系统", null);
-			putValue(Action.LONG_DESCRIPTION, "退出图书馆管理系统");
+			putValue(Action.LONG_DESCRIPTION, "退出图书信息管理系统");
 			putValue(Action.SHORT_DESCRIPTION, "退出系统");
 		}
 

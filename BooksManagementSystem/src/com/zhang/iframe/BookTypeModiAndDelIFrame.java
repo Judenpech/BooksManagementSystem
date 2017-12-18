@@ -55,7 +55,7 @@ public class BookTypeModiAndDelIFrame extends JInternalFrame {
 	public BookTypeModiAndDelIFrame() {
 		super();
 		setTitle("图书类别修改");
-		setBounds(100, 100, 500, 350);
+		setBounds(100, 100, 500, 450);
 		setIconifiable(true);
 		setClosable(true);
 		final JPanel panel = new JPanel();
@@ -66,8 +66,7 @@ public class BookTypeModiAndDelIFrame extends JInternalFrame {
 
 		ImageIcon bookTypeModiAndDelIcon = CreateIcon.add("booktypemodify.jpg");
 		logoLabel.setIcon(bookTypeModiAndDelIcon);
-
-		logoLabel.setPreferredSize(new Dimension(400, 80));
+		logoLabel.setPreferredSize(new Dimension(500, 80));
 		logoLabel.setText("logo");
 		panel.add(logoLabel);
 
@@ -75,7 +74,7 @@ public class BookTypeModiAndDelIFrame extends JInternalFrame {
 		getContentPane().add(panel_1);
 
 		final JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setPreferredSize(new Dimension(400, 130));
+		scrollPane.setPreferredSize(new Dimension(480, 200));
 		panel_1.add(scrollPane);
 
 		model = new DefaultTableModel();
@@ -92,7 +91,7 @@ public class BookTypeModiAndDelIFrame extends JInternalFrame {
 		gridLayout.setVgap(5);
 		gridLayout.setHgap(5);
 		panel_2.setLayout(gridLayout);
-		panel_2.setPreferredSize(new Dimension(400, 26));
+		panel_2.setPreferredSize(new Dimension(500, 30));
 
 		final JLabel label = new JLabel();
 		label.setText("类别编号：");
@@ -143,7 +142,6 @@ public class BookTypeModiAndDelIFrame extends JInternalFrame {
 
 	class TableListener extends MouseAdapter {
 		public void mouseClicked(final MouseEvent e) {
-
 			int selRow = table.getSelectedRow();
 			BookTypeId.setText(table.getValueAt(selRow, 0).toString().trim());
 			bookTypeModel.setSelectedItem(table.getValueAt(selRow, 1).toString().trim());

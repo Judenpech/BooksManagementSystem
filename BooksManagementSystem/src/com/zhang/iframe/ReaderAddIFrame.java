@@ -51,17 +51,16 @@ public class ReaderAddIFrame extends JInternalFrame {
 	 */
 	public ReaderAddIFrame() {
 		super();
-		setTitle("读者相关信息添加"); // 设置窗体标题－－－必须
+		setTitle("读者信息添加"); // 设置窗体标题－－－必须
 		setIconifiable(true); // 设置窗体可最小化－－－必须
 		setClosable(true); // 设置窗体可关闭－－－必须
-		setBounds(100, 100, 500, 350);
+		setBounds(100, 100, 620, 430);
 
 		final JLabel logoLabel = new JLabel();
 		ImageIcon readerAddIcon = CreateIcon.add("readerAdd.jpg");
 		logoLabel.setIcon(readerAddIcon);
 		logoLabel.setOpaque(true);
-		logoLabel.setBackground(Color.CYAN);
-		logoLabel.setPreferredSize(new Dimension(400, 60));
+		logoLabel.setPreferredSize(new Dimension(600, 60));
 		getContentPane().add(logoLabel, BorderLayout.NORTH);
 
 		final JPanel panel = new JPanel();
@@ -73,7 +72,7 @@ public class ReaderAddIFrame extends JInternalFrame {
 		gridLayout.setVgap(15);
 		gridLayout.setHgap(10);
 		panel_1.setLayout(gridLayout);
-		panel_1.setPreferredSize(new Dimension(450, 200));
+		panel_1.setPreferredSize(new Dimension(600, 250));
 		panel.add(panel_1);
 
 		final JLabel label_2 = new JLabel();
@@ -124,11 +123,11 @@ public class ReaderAddIFrame extends JInternalFrame {
 		panel_1.add(zy);
 
 		final JLabel label_6 = new JLabel();
-		label_6.setText("有效证件：");
+		label_6.setText("证件类别：");
 		panel_1.add(label_6);
 
 		comboBox = new JComboBox();
-		// comboBoxModel=(DefaultComboBoxModel)comboBox.getModel();
+		//comboBoxModel=(DefaultComboBoxModel)comboBox.getModel();
 		array = new String[] { "身份证", "军人证", "学生证", "工作证" };
 		comboBox.setModel(new DefaultComboBoxModel(array));
 		for (int i = 1; i < array.length; i++) {
@@ -157,7 +156,7 @@ public class ReaderAddIFrame extends JInternalFrame {
 		panel_1.add(maxnumber);
 
 		final JLabel label_10 = new JLabel();
-		label_10.setText("会员证有效日期：");
+		label_10.setText("借书证有效期：");
 		panel_1.add(label_10);
 
 		SimpleDateFormat myfmt = new SimpleDateFormat("yyyy-MM-dd");
@@ -170,7 +169,7 @@ public class ReaderAddIFrame extends JInternalFrame {
 		panel_1.add(date);
 
 		final JLabel label_11 = new JLabel();
-		label_11.setText("电    话：");
+		label_11.setText("联系电话：");
 		panel_1.add(label_11);
 
 		tel = new JTextField();
@@ -220,12 +219,12 @@ public class ReaderAddIFrame extends JInternalFrame {
 
 		final JButton save = new JButton();
 		panel_2.add(save);
-		save.setText("保存");
+		save.setText("添加");
 		save.addActionListener(new ButtonAddListener(radioButton1));
 
 		final JButton back = new JButton();
 		panel_2.add(back);
-		back.setText("返回");
+		back.setText("退出");
 		back.addActionListener(new CloseActionListener());
 		setVisible(true);
 	}
@@ -233,7 +232,7 @@ public class ReaderAddIFrame extends JInternalFrame {
 	class DateListener extends KeyAdapter {
 		public void keyTyped(KeyEvent e) {
 			if (bztime.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(null, "时间格式请使用\"2007-05-10\"格式");
+				JOptionPane.showMessageDialog(null, "时间格式请使用如\"2007-05-10\"格式");
 			}
 		}
 	}
@@ -257,32 +256,32 @@ public class ReaderAddIFrame extends JInternalFrame {
 		public void actionPerformed(final ActionEvent e) {
 
 			if (readername.getText().length() == 0) {
-				JOptionPane.showMessageDialog(null, "读者姓名文本框不可为空");
+				JOptionPane.showMessageDialog(null, "姓名不能为空！");
 				return;
 			}
 			if (age.getText().length() == 0) {
-				JOptionPane.showMessageDialog(null, "读者年龄文本框不可为空");
+				JOptionPane.showMessageDialog(null, "年龄不能为空！");
 				return;
 			}
 
 			if (zjnumber.getText().length() == 0) {
-				JOptionPane.showMessageDialog(null, "证件号码文本框不可为空");
+				JOptionPane.showMessageDialog(null, "证件号码不能为空！");
 				return;
 			}
 			if (zjnumber.getText().length() != 13) {
-				JOptionPane.showMessageDialog(null, "证件号码位数为13");
+				JOptionPane.showMessageDialog(null, "请输入有效的13位证件号码！");
 				return;
 			}
 			if (keepmoney.getText().length() == 0) {
-				JOptionPane.showMessageDialog(null, "押金文本框不可为空");
+				JOptionPane.showMessageDialog(null, "押金不能为空！");
 				return;
 			}
 			if (zy.getText().length() == 0) {
-				JOptionPane.showMessageDialog(null, "职业文本框不可为空");
+				JOptionPane.showMessageDialog(null, "职业不能为空！");
 				return;
 			}
 			if (zy.getText().length() > 20) {
-				JOptionPane.showMessageDialog(null, "职业文本框位数为20");
+				JOptionPane.showMessageDialog(null, "职业不能超过20个字符");
 				return;
 			}
 			if (ISBN.getText().length() == 0) {
@@ -294,19 +293,19 @@ public class ReaderAddIFrame extends JInternalFrame {
 				return;
 			}
 			if (tel.getText().length() == 0) {
-				JOptionPane.showMessageDialog(null, "电话号码文本框不可为空");
+				JOptionPane.showMessageDialog(null, "联系电话不能为空！");
 				return;
 			}
 			if (tel.getText().length() > 11 || tel.getText().length() < 0) {
-				JOptionPane.showMessageDialog(null, "电话号码位数小于11位");
+				JOptionPane.showMessageDialog(null, "联系电话位数小于11位");
 				return;
 			}
 			if (maxnumber.getText().length() == 0) {
-				JOptionPane.showMessageDialog(null, "最大借书量文本框不可为空");
+				JOptionPane.showMessageDialog(null, "最大借书量不能为空！");
 				return;
 			}
 			if (maxnumber.getText().length() > 2 || tel.getText().length() < 0) {
-				JOptionPane.showMessageDialog(null, "最大借书量为两位数字");
+				JOptionPane.showMessageDialog(null, "最大借书量为2位数字");
 				return;
 			}
 			if (bztime.getText().isEmpty() || date.getText().isEmpty()) {
@@ -327,7 +326,7 @@ public class ReaderAddIFrame extends JInternalFrame {
 					Date.valueOf(bztime.getText().trim()), ISBN.getText().trim());
 			System.out.println(i);
 			if (i == 1) {
-				JOptionPane.showMessageDialog(null, "添加成功！");
+				JOptionPane.showMessageDialog(null, "读者信息添加成功！");
 				doDefaultCloseAction();
 			}
 

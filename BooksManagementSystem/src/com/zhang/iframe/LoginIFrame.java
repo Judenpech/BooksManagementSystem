@@ -125,7 +125,6 @@ public class LoginIFrame extends JFrame {
 		ImageIcon loginIcon = CreateIcon.add("login.jpg");
 		tupianLabel.setIcon(loginIcon);
 		tupianLabel.setOpaque(true);
-		tupianLabel.setBackground(Color.GREEN);
 		tupianLabel.setPreferredSize(new Dimension(260, 90));
 		panel.add(tupianLabel, BorderLayout.NORTH);
 		setVisible(true);

@@ -42,7 +42,7 @@ public class UserModiAndDelIFrame extends JInternalFrame {
 	private JRadioButton JRadioButton1, JRadioButton2;
 
 	private Object[][] getFileStates(List list) {
-		String[] str = { "用户编号", "用户姓名", "性别", "年龄", "押金", "办证日期", "电话", "密码" };
+		String[] str = { "用户编号", "姓名", "性别", "年龄", "押金", "注册日期", "联系电话", "密码" };
 		Object[][] users = new Object[list.size()][str.length];
 		for (int i = 0; i < list.size(); i++) {
 			User user = (User) list.get(i);
@@ -68,24 +68,23 @@ public class UserModiAndDelIFrame extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setTitle("用户信息修改与删除");
-		setBounds(100, 100, 500, 500);
+		setBounds(100, 100, 700, 500);
 
 		final JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(0, 150));
+		panel.setPreferredSize(new Dimension(700, 150));
 		getContentPane().add(panel, BorderLayout.NORTH);
 
 		final JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setPreferredSize(new Dimension(400, 120));
+		scrollPane.setPreferredSize(new Dimension(700, 220));
 		panel.add(scrollPane);
 
 		Object[][] results = getFileStates(Dao.selectuser());
-		str = new String[] { "用户编号", "用户姓名", "性别", "年龄", "押金", "办证日期", "电话", "密码" };
+		str = new String[] { "用户编号", "姓名", "性别", "年龄", "押金", "注册日期", "联系电话", "密码" };
 		table = new JTable(results, str);
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 
 		table.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(final MouseEvent e) {
-
 				String idd, name, sex, age, yajin, workdate, tel, password;
 				int selRow = table.getSelectedRow();
 				idd = table.getValueAt(selRow, 0).toString().trim();
@@ -134,7 +133,7 @@ public class UserModiAndDelIFrame extends JInternalFrame {
 
 		final JLabel label = new JLabel();
 		panel_4.add(label);
-		label.setText("    用 户 姓 名：");
+		label.setText("    姓      名：");
 
 		textField = new JTextField();
 		panel_4.add(textField);
@@ -181,7 +180,7 @@ public class UserModiAndDelIFrame extends JInternalFrame {
 
 		final JLabel label_3 = new JLabel();
 		panel_4.add(label_3);
-		label_3.setText("    办 证 日 期：");
+		label_3.setText("    注 册 日 期：");
 
 		textField_3 = new JTextField();
 		panel_4.add(textField_3);
@@ -189,7 +188,7 @@ public class UserModiAndDelIFrame extends JInternalFrame {
 		final JLabel label_4 = new JLabel();
 		panel_4.add(label_4);
 		label_4.setText("    联 系 电 话：");
-		textField_4 = new JTextField("电话号必须是十一位", 11);
+		textField_4 = new JTextField("电话号必须为11位", 11);
 		panel_4.add(textField_4);
 		textField_4.setDocument(new MyDocument(11));
 
@@ -215,33 +214,33 @@ public class UserModiAndDelIFrame extends JInternalFrame {
 
 				if (textField.getText().length() == 0) {
 
-					JOptionPane.showMessageDialog(null, "用户名不能为空");
+					JOptionPane.showMessageDialog(null, "用户名不能为空！");
 					return;
 				}
 
 				if (textField_2.getText().length() == 0) {
-					JOptionPane.showMessageDialog(null, "年龄不能为空");
+					JOptionPane.showMessageDialog(null, "年龄不能为空！");
 					return;
 				}
 
 				if (textField_4.getText().length() == 0) {
-					JOptionPane.showMessageDialog(null, "电话不能为空");
+					JOptionPane.showMessageDialog(null, "联系电话不能为空！");
 					return;
 				}
 				if (textField_4.getText().length() != 11) {
-					JOptionPane.showMessageDialog(null, "电话号必须是十一位");
+					JOptionPane.showMessageDialog(null, "电话号的有效位数为11位！");
 					return;
 				}
 				if (textField_5.getText().length() == 0) {
-					JOptionPane.showMessageDialog(null, "押金不能为空");
+					JOptionPane.showMessageDialog(null, "押金不能为空！");
 					return;
 				}
 				if (textField_6.getText().length() == 0) {
-					JOptionPane.showMessageDialog(null, "密码不能为空");
+					JOptionPane.showMessageDialog(null, "密码不能为空！");
 					return;
 				}
 				if (textField_6.getText().length() > 15) {
-					JOptionPane.showMessageDialog(null, "密码不能大于十五位");
+					JOptionPane.showMessageDialog(null, "密码不能大于15位！");
 					return;
 				}
 				int id = Integer.parseInt(textField_7.getText());

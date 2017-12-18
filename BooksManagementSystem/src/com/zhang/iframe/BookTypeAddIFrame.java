@@ -31,18 +31,18 @@ public class BookTypeAddIFrame extends JInternalFrame {
 		setIconifiable(true); // 设置窗体可最小化－－－必须
 		setClosable(true);
 		setTitle("图书类别添加");
-		setBounds(100, 100, 370, 240);
+		setBounds(100, 100, 450, 250);
 
 		final JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
-		panel.setPreferredSize(new Dimension(360, 80));
+		panel.setPreferredSize(new Dimension(450, 80));
 		getContentPane().add(panel, BorderLayout.NORTH);
 
 		final JLabel label_4 = new JLabel();
 		ImageIcon bookTypeAddIcon = CreateIcon.add("bookTypeAdd.jpg");
 		label_4.setIcon(bookTypeAddIcon);
 		label_4.setPreferredSize(new Dimension(360, 80));
-		label_4.setText("图书类别图片（400*80）");
+		//label_4.setText("图书类别图片（400*80）");
 		panel.add(label_4);
 
 		final JPanel panel_3 = new JPanel();
@@ -54,24 +54,26 @@ public class BookTypeAddIFrame extends JInternalFrame {
 		panel_3.add(label_1);
 
 		final JLabel label_2 = new JLabel();
-		label_2.setPreferredSize(new Dimension(90, 20));
+		label_2.setPreferredSize(new Dimension(150, 20));
 		label_2.setText("图书类别名称：");
 		panel_3.add(label_2);
+		
 		bookTypeName = new JTextField();
 		bookTypeName.setDocument(new MyDocument(20));
 		bookTypeName.setColumns(30);
 		panel_3.add(bookTypeName);
+		
 		final JButton button = new JButton();
-		button.setText("保存");
+		button.setText("添加");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
 				if (bookTypeName.getText().length() == 0) {
-					JOptionPane.showMessageDialog(null, "图书类别文本框不可为空");
+					JOptionPane.showMessageDialog(null, "图书类别不能为空!");
 					return;
 				}
 				int i = Dao.InsertBookType(bookTypeName.getText().trim());
 				if (i == 1) {
-					JOptionPane.showMessageDialog(null, "添加成功！");
+					JOptionPane.showMessageDialog(null, "图书类别添加成功！");
 					doDefaultCloseAction();
 				} else {
 					JOptionPane.showMessageDialog(null, "图书类别名已存在，请重新输入！");
@@ -80,7 +82,7 @@ public class BookTypeAddIFrame extends JInternalFrame {
 		});
 		panel_3.add(button);
 		final JButton buttonDel = new JButton();
-		buttonDel.setText("关闭");
+		buttonDel.setText("退出");
 		buttonDel.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
 				doDefaultCloseAction();
