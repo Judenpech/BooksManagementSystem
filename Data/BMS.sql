@@ -9,9 +9,9 @@ IF DB_ID('BMSBase') IS NOT NULL
 	END
 /****** Object:  Database [BMSBase]    Script Date: 12/14/2017 20:55:19 ******/
 CREATE DATABASE [BMSBase] ON  PRIMARY 
-( NAME = N'BMSBase', FILENAME = N'C:\BMSBase.mdf' , SIZE = 3072KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+( NAME = N'BMSBase', FILENAME = N'E:\BMSBase.mdf' , SIZE = 3072KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
  LOG ON 
-( NAME = N'BMSBase_log', FILENAME = N'C:\BMSBase_log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+( NAME = N'BMSBase_log', FILENAME = N'E:\BMSBase_log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
 GO
 
 ALTER DATABASE [BMSBase] SET COMPATIBILITY_LEVEL = 100
@@ -110,7 +110,7 @@ GO
 USE [BMSBase]
 GO
 
-/****** Object:  Table [dbo].[UserInformation]    Script Date: 12/14/2017 21:02:54 ******/
+/****** Object:  Table [dbo].[tb_user]    Script Date: 12/14/2017 21:02:54 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -120,17 +120,16 @@ GO
 SET ANSI_PADDING ON
 GO
 
-CREATE TABLE [dbo].[tb_user](
-	[Id] [int] NOT NULL,
+CREATE TABLE [dbo].tb_operator(
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [varchar](6) NOT NULL,
 	[Sex] [varchar](2) NOT NULL,
 	[Age] [int] NOT NULL,
 	[Identitycard] [varchar](20) NOT NULL,
 	[Workdate] [datetime] NOT NULL,
 	[Tel] [varchar](15) NOT NULL,
-	[Yajin] [int] NOT NULL,
 	[Password] [nvarchar](10) NOT NULL,
-	[Admin] [nchar](10) NOT NULL,
+	[Admin] [int]NOT NULL,
  CONSTRAINT [PK_tb_user] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -139,8 +138,7 @@ CREATE TABLE [dbo].[tb_user](
 
 CREATE TABLE [dbo].[tb_bookType](
 	[TypeName] [varchar](20) NOT NULL,
-	[Id] [int] NOT NULL,
-	[Days] [datetime] NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
  CONSTRAINT [PK_tb_bookType] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -176,16 +174,6 @@ CREATE TABLE [dbo].[tb_bookInfo](
 	[ISBN] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
-
-CREATE TABLE [dbo].[tb_operator](
-	[Id] [int] NOT NULL,
-	[Name] [varchar](10) NOT NULL,
-	[Grade] [int] NOT NULL ,
-	[Password] [nvarchar](10) NOT NULL,
-	[admin][int] NOT NULL ,
-) ON [PRIMARY]
-
-GO
 
 SET ANSI_PADDING OFF
 GO
